@@ -20,10 +20,6 @@
     "dark": "Темная",
     "light": "Светлая"
   },
-  "support": {
-    "me": "Поддержать меня",
-    "project": "Поддержать проект"
-  },
   "mobile": {
     "menu": "Меню",
     "closeMenu": "Закрыть меню",
@@ -55,7 +51,8 @@
   },
   "links": {
     "npm": "npm пакет",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upstreamReference": "На основе:"
   },
   "editor": {
     "markdown": {
@@ -72,9 +69,16 @@
     }
   },
   "specViewer": {
-    "header": { "title": "Документы спецификации" },
-    "tooltips": { "viewRendered": "Просмотреть отрендеренный документ", "viewSource": "Просмотреть исходный markdown" },
-    "empty": { "docNotCreated": "Этот документ {{doc}} еще не создан." }
+    "header": {
+      "title": "Документы спецификации"
+    },
+    "tooltips": {
+      "viewRendered": "Просмотреть отрендеренный документ",
+      "viewSource": "Просмотреть исходный markdown"
+    },
+    "empty": {
+      "docNotCreated": "Этот документ {{doc}} еще не создан."
+    }
   },
   "language": {
     "select": "Выберите язык"
@@ -170,9 +174,15 @@
       "task": "Задача",
       "groupBadge": "Группа задач"
     },
-    "files": { "label": "Файлы:" },
-    "implementation": { "label": "Реализация:" },
-    "labels": { "spec": "Спецификация:" },
+    "files": {
+      "label": "Файлы:"
+    },
+    "implementation": {
+      "label": "Реализация:"
+    },
+    "labels": {
+      "spec": "Спецификация:"
+    },
     "noSpecsFound": {
       "title": "Спецификации не найдены",
       "noMatch": "Нет спецификаций соответствующих \"{{query}}\"",
@@ -569,5 +579,10 @@
       "loading": "Загрузка журнала изменений...",
       "notFound": "Журнал изменений для этой версии не найден"
     }
+  },
+  "mic": {
+    "start": "Начать голосовой ввод",
+    "stop": "Остановить голосовой ввод",
+    "notSupported": "Голосовой ввод не поддерживается в этом браузере"
   }
 }

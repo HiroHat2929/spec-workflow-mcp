@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { MicButton } from '../../components/MicButton';
 
 interface TextInputModalProps {
   isOpen: boolean;
@@ -43,6 +44,10 @@ export function TextInputModal({
     }
   };
 
+  const appendTranscript = (text: string) => {
+    setValue((prev) => (prev ? `${prev} ${text}` : text));
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
@@ -78,27 +83,32 @@ export function TextInputModal({
 
           {/* Content */}
           <div className="p-6">
-            {multiline ? (
-              <textarea
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder={placeholder}
-                className="w-full px-3 py-2 border border-[var(--border-default)] rounded-md bg-[var(--surface-panel)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] resize-vertical min-h-[100px]"
-                rows={4}
-                autoFocus
-              />
-            ) : (
-              <input
-                type="text"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder={placeholder}
-                className="w-full px-3 py-2 border border-[var(--border-default)] rounded-md bg-[var(--surface-panel)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)]"
-                autoFocus
-              />
-            )}
+            <div className="relative">
+              {multiline ? (
+                <textarea
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder={placeholder}
+                  className="w-full px-3 py-2 pr-14 border border-[var(--border-default)] rounded-md bg-[var(--surface-panel)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] resize-vertical min-h-[100px]"
+                  rows={4}
+                  autoFocus
+                />
+              ) : (
+                <input
+                  type="text"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder={placeholder}
+                  className="w-full px-3 py-2 pr-14 border border-[var(--border-default)] rounded-md bg-[var(--surface-panel)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)]"
+                  autoFocus
+                />
+              )}
+              <div className="absolute top-1.5 right-1.5">
+                <MicButton onTranscript={appendTranscript} />
+              </div>
+            </div>
           </div>
 
           {/* Footer */}

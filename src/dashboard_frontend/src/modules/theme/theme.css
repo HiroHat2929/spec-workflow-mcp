@@ -1,8 +1,9 @@
 /* =============================================================================
-   DESIGN TOKENS
-   Utility & Function Design System - Developer-focused, GitHub-inspired
-   4px grid | Sharp corners | Semantic colors only | Cool slate palette
+   DESIGN TOKENS - ABeam Design System
+   ABeam-aligned palette (#001964 navy, warm beige, BIZ UDPGothic / Noto Sans JP)
+   Reference: ABeam Design System v1 (colors / typography / spacing tokens)
    ============================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 :root {
   /* -------------------------------------------------------------------------
@@ -22,8 +23,9 @@
   /* -------------------------------------------------------------------------
      TYPOGRAPHY
      ------------------------------------------------------------------------- */
-  --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-sans: 'BIZ UDPGothic', 'Noto Sans JP', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", Helvetica, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-menu: 'Noto Sans JP', 'BIZ UDPGothic', system-ui, sans-serif;
 
   --text-xs: 11px;
   --text-sm: 12px;
@@ -46,8 +48,9 @@
      BORDER RADIUS (Sharp - professional, not playful)
      ------------------------------------------------------------------------- */
   --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
   --radius-full: 9999px;
 
   /* -------------------------------------------------------------------------
@@ -69,66 +72,66 @@
      LIGHT MODE COLORS (Cool slate/blue-gray palette)
      ------------------------------------------------------------------------- */
 
-  /* Surfaces */
-  --surface-base: #f8fafc;        /* Page background */
-  --surface-panel: #ffffff;        /* Cards, panels */
-  --surface-elevated: #ffffff;     /* Modals, dropdowns */
-  --surface-inset: #f1f5f9;        /* Inset areas, icon backgrounds */
-  --surface-hover: #e2e8f0;        /* Hover states - visible on white */
+  /* Surfaces (ABeam: warm-beige + white) */
+  --surface-base: #FAF7F2;         /* Page background — subtle warm beige */
+  --surface-panel: #FFFFFF;        /* Cards, panels */
+  --surface-elevated: #FFFFFF;     /* Modals, dropdowns */
+  --surface-inset: #F0EBE3;        /* Inset areas — ABeam brand background */
+  --surface-hover: #E8DFD0;        /* Hover states */
 
-  /* Text Hierarchy (4 levels) */
-  --text-primary: #0f172a;         /* High emphasis */
-  --text-secondary: #334155;       /* Medium emphasis */
-  --text-muted: #64748b;           /* Low emphasis */
-  --text-faint: #94a3b8;           /* Minimal emphasis */
+  /* Text Hierarchy */
+  --text-primary: #0F172A;         /* High emphasis (near-black) */
+  --text-secondary: #4F4F4F;       /* Medium emphasis — ABeam mediumGray */
+  --text-muted: #9E9E9E;           /* Low emphasis — ABeam neutral gray */
+  --text-faint: #C8BEAA;           /* Minimal — ABeam lightText */
 
   /* Borders */
-  --border-default: #e2e8f0;       /* Standard borders */
-  --border-strong: #cbd5e1;        /* Emphasized borders */
-  --border-focus: #6366f1;         /* Focus rings */
+  --border-default: #E0E0E0;       /* Standard borders */
+  --border-strong: #9E9E9E;        /* Emphasized borders — ABeam neutral gray */
+  --border-focus: #001964;         /* Focus rings — ABeam primary */
 
-  /* Interactive */
-  --interactive-primary: #4f46e5;  /* Primary buttons, links */
-  --interactive-primary-hover: #4338ca;
-  --interactive-secondary: #f1f5f9;
-  --interactive-secondary-hover: #e2e8f0;
+  /* Interactive (ABeam navy) */
+  --interactive-primary: #001964;
+  --interactive-primary-hover: #465285;
+  --interactive-secondary: #FBFBFB;
+  --interactive-secondary-hover: #F4F4F4;
 
-  /* Status Colors (semantic only - not decorative) */
+  /* Status Colors (semantic) */
   --status-success: #16a34a;
   --status-success-muted: #dcfce7;
   --status-success-bg: #dcfce7;
   --status-warning: #ca8a04;
   --status-warning-muted: #fef9c3;
-  --status-error: #dc2626;
-  --status-error-muted: #fee2e2;
-  --status-error-bg: #fee2e2;
-  --status-error-border: #fca5a5;
-  --status-info: #2563eb;
-  --status-info-muted: #dbeafe;
-  --status-pending: #64748b;
-  --status-pending-muted: #f1f5f9;
-  --status-in-progress: #7c3aed;
-  --status-in-progress-muted: #ede9fe;
+  --status-error: #E53935;          /* ABeam destructive */
+  --status-error-muted: rgba(229, 57, 53, 0.10);
+  --status-error-bg: rgba(229, 57, 53, 0.10);
+  --status-error-border: rgba(229, 57, 53, 0.30);
+  --status-info: #001964;
+  --status-info-muted: rgba(0, 25, 100, 0.10);
+  --status-pending: #9E9E9E;
+  --status-pending-muted: #F0EBE3;
+  --status-in-progress: #8C7B5E;    /* ABeam darkBeige */
+  --status-in-progress-muted: #F0EBE3;
 
-  /* Accent Colors (for interactive highlights) */
-  --accent-primary: #4f46e5;
-  --accent-primary-hover: #4338ca;
-  --accent-primary-muted: #e0e7ff;
-  --accent-secondary: #7c3aed;
-  --accent-secondary-muted: #ede9fe;
+  /* Accent Colors */
+  --accent-primary: #001964;
+  --accent-primary-hover: #465285;
+  --accent-primary-muted: rgba(0, 25, 100, 0.10);
+  --accent-secondary: #8C7B5E;
+  --accent-secondary-muted: #F0EBE3;
 
-  /* Surface Aliases (for component compatibility) */
-  --surface-secondary: #f1f5f9;
-  --surface-sunken: #f1f5f9;
-  --surface-raised: #ffffff;
-  --surface-page: #f8fafc;
+  /* Surface Aliases */
+  --surface-secondary: #F0EBE3;
+  --surface-sunken: #F0EBE3;
+  --surface-raised: #FFFFFF;
+  --surface-page: #FAF7F2;
 
   /* Border Aliases */
-  --border-subtle: #e2e8f0;
+  --border-subtle: #E0E0E0;
 
   /* Text Aliases */
-  --text-tertiary: #94a3b8;
-  --text-accent: #4f46e5;
+  --text-tertiary: #C8BEAA;
+  --text-accent: #001964;
 
   /* Legacy aliases for compatibility */
   --bg: var(--surface-base);
@@ -144,29 +147,29 @@
    --------------------------------------------------------------------------- */
 .dark:root,
 .dark {
-  /* Surfaces */
-  --surface-base: #0f172a;
-  --surface-panel: #1e293b;
-  --surface-elevated: #1e293b;
-  --surface-inset: #0f172a;
-  --surface-hover: #334155;
+  /* Surfaces (ABeam dark — navy-tinged dark layers) */
+  --surface-base: #0F1326;         /* Page background — very dark navy */
+  --surface-panel: #1A1F38;        /* Cards, panels */
+  --surface-elevated: #1A1F38;     /* Modals, dropdowns */
+  --surface-inset: #0F1326;        /* Inset areas */
+  --surface-hover: #2A3050;        /* Hover states */
 
   /* Text Hierarchy */
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
+  --text-primary: #F1F5F9;
+  --text-secondary: #C8BEAA;       /* ABeam lightText for warmth on dark */
+  --text-muted: #94A3B8;
+  --text-faint: #64748B;
 
   /* Borders */
-  --border-default: #334155;
+  --border-default: #2A3050;
   --border-strong: #475569;
-  --border-focus: #818cf8;
+  --border-focus: #7B8DC4;         /* lightened ABeam navy */
 
-  /* Interactive */
-  --interactive-primary: #6366f1;
-  --interactive-primary-hover: #818cf8;
-  --interactive-secondary: #334155;
-  --interactive-secondary-hover: #475569;
+  /* Interactive (lightened ABeam navy for contrast on dark) */
+  --interactive-primary: #7B8DC4;
+  --interactive-primary-hover: #9BAACE;
+  --interactive-secondary: #2A3050;
+  --interactive-secondary-hover: #3A4060;
 
   /* Status Colors */
   --status-success: #22c55e;
@@ -174,36 +177,36 @@
   --status-success-bg: rgba(34, 197, 94, 0.15);
   --status-warning: #eab308;
   --status-warning-muted: rgba(234, 179, 8, 0.15);
-  --status-error: #ef4444;
-  --status-error-muted: rgba(239, 68, 68, 0.15);
-  --status-error-bg: rgba(239, 68, 68, 0.15);
-  --status-error-border: rgba(239, 68, 68, 0.3);
-  --status-info: #3b82f6;
-  --status-info-muted: rgba(59, 130, 246, 0.15);
-  --status-pending: #94a3b8;
+  --status-error: #E53935;
+  --status-error-muted: rgba(229, 57, 53, 0.18);
+  --status-error-bg: rgba(229, 57, 53, 0.18);
+  --status-error-border: rgba(229, 57, 53, 0.40);
+  --status-info: #7B8DC4;
+  --status-info-muted: rgba(123, 141, 196, 0.18);
+  --status-pending: #94A3B8;
   --status-pending-muted: rgba(148, 163, 184, 0.15);
-  --status-in-progress: #a78bfa;
-  --status-in-progress-muted: rgba(167, 139, 250, 0.15);
+  --status-in-progress: #C8BEAA;   /* ABeam beige stands out on dark */
+  --status-in-progress-muted: rgba(200, 190, 170, 0.15);
 
-  /* Accent Colors (for interactive highlights) */
-  --accent-primary: #6366f1;
-  --accent-primary-hover: #818cf8;
-  --accent-primary-muted: rgba(99, 102, 241, 0.15);
-  --accent-secondary: #a78bfa;
-  --accent-secondary-muted: rgba(167, 139, 250, 0.15);
+  /* Accent Colors */
+  --accent-primary: #7B8DC4;
+  --accent-primary-hover: #9BAACE;
+  --accent-primary-muted: rgba(123, 141, 196, 0.18);
+  --accent-secondary: #C8BEAA;
+  --accent-secondary-muted: rgba(200, 190, 170, 0.15);
 
-  /* Surface Aliases (for component compatibility) */
-  --surface-secondary: #1e293b;
-  --surface-sunken: #0f172a;
-  --surface-raised: #334155;
-  --surface-page: #0f172a;
+  /* Surface Aliases */
+  --surface-secondary: #1A1F38;
+  --surface-sunken: #0F1326;
+  --surface-raised: #2A3050;
+  --surface-page: #0F1326;
 
   /* Border Aliases */
-  --border-subtle: #334155;
+  --border-subtle: #2A3050;
 
   /* Text Aliases */
-  --text-tertiary: #64748b;
-  --text-accent: #818cf8;
+  --text-tertiary: #64748B;
+  --text-accent: #9BAACE;
 
   /* Shadows (darker in dark mode) */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);

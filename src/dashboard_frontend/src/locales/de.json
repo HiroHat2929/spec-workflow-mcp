@@ -20,10 +20,6 @@
     "dark": "Dunkel",
     "light": "Hell"
   },
-  "support": {
-    "me": "Mich unterstützen",
-    "project": "Das Projekt unterstützen"
-  },
   "mobile": {
     "menu": "Menü",
     "closeMenu": "Menü schließen",
@@ -53,7 +49,8 @@
   },
   "links": {
     "npm": "npm-Paket",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upstreamReference": "Basiert auf:"
   },
   "editor": {
     "markdown": {
@@ -70,9 +67,16 @@
     }
   },
   "specViewer": {
-    "header": { "title": "Spezifikationsdokumente" },
-    "tooltips": { "viewRendered": "Gerenderte Dokument anzeigen", "viewSource": "Quell-Markdown anzeigen" },
-    "empty": { "docNotCreated": "Dieses {{doc}}-Dokument wurde noch nicht erstellt." }
+    "header": {
+      "title": "Spezifikationsdokumente"
+    },
+    "tooltips": {
+      "viewRendered": "Gerenderte Dokument anzeigen",
+      "viewSource": "Quell-Markdown anzeigen"
+    },
+    "empty": {
+      "docNotCreated": "Dieses {{doc}}-Dokument wurde noch nicht erstellt."
+    }
   },
   "language": {
     "select": "Sprache auswählen"
@@ -168,9 +172,15 @@
       "task": "Aufgabe",
       "groupBadge": "Aufgabengruppe"
     },
-    "files": { "label": "Dateien:" },
-    "implementation": { "label": "Implementierung:" },
-    "labels": { "spec": "Spezifikation:" },
+    "files": {
+      "label": "Dateien:"
+    },
+    "implementation": {
+      "label": "Implementierung:"
+    },
+    "labels": {
+      "spec": "Spezifikation:"
+    },
     "noSpecsFound": {
       "title": "Keine Spezifikationen gefunden",
       "noMatch": "Keine Spezifikationen passen zu \"{{query}}\"",
@@ -561,5 +571,10 @@
       "loading": "Änderungsprotokoll wird geladen...",
       "notFound": "Änderungsprotokoll für diese Version nicht gefunden"
     }
+  },
+  "mic": {
+    "start": "Spracheingabe starten",
+    "stop": "Spracheingabe stoppen",
+    "notSupported": "Spracheingabe wird in diesem Browser nicht unterstützt"
   }
 }

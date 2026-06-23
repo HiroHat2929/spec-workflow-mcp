@@ -72,6 +72,20 @@ ${context.dashboardUrl ? `- Dashboard: ${context.dashboardUrl}` : ''}
 - Each document builds upon the previous one in sequence
 - Templates are automatically updated on server start
 
+${documentType === 'requirements' ? `
+**Special Instructions for Requirements Document (IPA-aligned Discovery):**
+- BEFORE writing requirements.md, you MUST run the 2-step Discovery flow defined in spec-workflow-guide (Phase 1, step 3).
+- Step 1: ask Q1〜Q5 (concept questions) ONE AT A TIME and wait for the user's answer between questions.
+  - After Q4, run a web search for market/industry/regulatory trends and present a summary.
+  - At Q5, propose 3〜5 candidate KGI/KPI based on Q1〜Q4.
+  - After Q5, run a web search for similar products / case studies and present 2〜3 examples.
+- Step 2: summarize Q1〜Q5 + research findings as a markdown table and confirm with the user. Loop until the user agrees.
+- Step 3: ask Q6〜Q8 (stakeholders / scope / constraints) ONE AT A TIME.
+- Use the user's language (default 日本語). Be conversational, colleague-tone.
+- Only AFTER all 8 answers + Step 2 confirmation are recorded, draft requirements.md based on Q1〜Q8 + the requirements template.
+- Map each requirement back to which Q it derives from when natural.
+` : ''}
+
 ${documentType === 'tasks' ? `
 **Special Instructions for Tasks Document:**
 - For each task, generate a _Prompt field with structured AI guidance

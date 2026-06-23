@@ -6,6 +6,7 @@ import { MDXEditorWrapper } from '../mdx-editor';
 import { TextInputModal } from '../modals/TextInputModal';
 import { ConfirmationModal } from '../modals/ConfirmationModal';
 import { SideBySideView } from './SideBySideView';
+import { MicButton } from '../../components/MicButton';
 
 export type ViewMode = 'preview' | 'annotate' | 'side-by-side';
 
@@ -155,14 +156,19 @@ function CommentModal({
           <label className="block text-sm sm:text-sm font-medium text-[var(--text-secondary)] mb-2 sm:mb-2">
             {t('approvals.annotator.yourComment')}
           </label>
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder={t('approvals.annotator.commentPlaceholder')}
-            className="w-full min-w-0 px-3 sm:px-3 py-3 border border-[var(--border-default)] rounded-lg bg-[var(--surface-inset)] text-[var(--text-primary)] placeholder-[var(--text-faint)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] resize-none text-base leading-relaxed flex-1 min-h-[120px]"
-            autoFocus
-          />
+          <div className="relative flex-1 flex flex-col">
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder={t('approvals.annotator.commentPlaceholder')}
+              className="w-full min-w-0 px-3 sm:px-3 py-3 pr-14 border border-[var(--border-default)] rounded-lg bg-[var(--surface-inset)] text-[var(--text-primary)] placeholder-[var(--text-faint)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] resize-none text-base leading-relaxed flex-1 min-h-[120px]"
+              autoFocus
+            />
+            <div className="absolute top-2 right-2">
+              <MicButton onTranscript={(text) => setComment((prev) => (prev ? `${prev} ${text}` : text))} />
+            </div>
+          </div>
           <p className="text-sm text-[var(--text-muted)] mt-2 sm:mt-2 break-words">
             <span className="hidden sm:inline">{t('approvals.annotator.hints.desktop')}</span>
             <span className="sm:hidden">{t('approvals.annotator.hints.mobile')}</span>

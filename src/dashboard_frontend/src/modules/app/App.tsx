@@ -90,16 +90,6 @@ function Header({ toggleSidebar }: { toggleSidebar: () => void }) {
               <button onClick={toggleTheme} className="btn-secondary" title={t('theme.toggle')}>
                 {theme === 'dark' ? t('theme.dark') : t('theme.light')}
               </button>
-
-              <a
-                href="https://buymeacoffee.com/pimzino"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 text-sm font-medium rounded-md transition-colors"
-                title={t('support.project')}
-              >
-                {t('support.me')}
-              </a>
             </div>
 
             {/* Mobile/Tablet Settings Menu Button */}
@@ -162,18 +152,6 @@ function Header({ toggleSidebar }: { toggleSidebar: () => void }) {
                   </button>
                 </div>
 
-                <div className="pt-2">
-                  <a
-                    href="https://buymeacoffee.com/pimzino"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center px-4 py-3 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 text-sm font-medium rounded-md transition-colors"
-                    title={t('support.project')}
-                  >
-                    {t('support.me')}
-                  </a>
-                </div>
-
                 {info?.version && (
                   <div className="pt-2 border-t border-[var(--border-default)]">
                     <div className="text-center">
@@ -185,7 +163,7 @@ function Header({ toggleSidebar }: { toggleSidebar: () => void }) {
                         className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors cursor-pointer"
                         title={t('changelog.viewChangelog', 'View changelog')}
                       >
-                        Spec-Workflow-MCP v{info.version}
+                        ABeam Spec Workflow v{info.version}
                       </button>
                     </div>
                   </div>

@@ -20,10 +20,6 @@
     "dark": "مظلم",
     "light": "فاتح"
   },
-  "support": {
-    "me": "ادعمني",
-    "project": "ادعم المشروع"
-  },
   "mobile": {
     "menu": "القائمة",
     "closeMenu": "إغلاق القائمة",
@@ -53,7 +49,8 @@
   },
   "links": {
     "npm": "حزمة npm",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upstreamReference": "مستند إلى:"
   },
   "editor": {
     "markdown": {
@@ -70,9 +67,16 @@
     }
   },
   "specViewer": {
-    "header": { "title": "وثائق المواصفة" },
-    "tooltips": { "viewRendered": "عرض الوثيقة المعروضة", "viewSource": "عرض مصدر الماركداون" },
-    "empty": { "docNotCreated": "لم يتم إنشاء وثيقة {{doc}} هذه بعد." }
+    "header": {
+      "title": "وثائق المواصفة"
+    },
+    "tooltips": {
+      "viewRendered": "عرض الوثيقة المعروضة",
+      "viewSource": "عرض مصدر الماركداون"
+    },
+    "empty": {
+      "docNotCreated": "لم يتم إنشاء وثيقة {{doc}} هذه بعد."
+    }
   },
   "language": {
     "select": "اختر اللغة"
@@ -168,9 +172,15 @@
       "task": "المهمة",
       "groupBadge": "مجموعة المهام"
     },
-    "files": { "label": "الملفات:" },
-    "implementation": { "label": "التنفيذ:" },
-    "labels": { "spec": "المواصفة:" },
+    "files": {
+      "label": "الملفات:"
+    },
+    "implementation": {
+      "label": "التنفيذ:"
+    },
+    "labels": {
+      "spec": "المواصفة:"
+    },
     "noSpecsFound": {
       "title": "لم توجد مواصفات",
       "noMatch": "لا توجد مواصفات تطابق \"{{query}}\"",
@@ -561,5 +571,10 @@
       "loading": "جاري تحميل سجل التغييرات...",
       "notFound": "لم يتم العثور على سجل التغييرات لهذا الإصدار"
     }
+  },
+  "mic": {
+    "start": "بدء الإدخال الصوتي",
+    "stop": "إيقاف الإدخال الصوتي",
+    "notSupported": "الإدخال الصوتي غير مدعوم في هذا المتصفح"
   }
 }

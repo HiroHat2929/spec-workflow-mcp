@@ -178,7 +178,7 @@ export function PageNavigationSidebar({
         <div className="hidden lg:flex items-center justify-between p-4 border-b border-[var(--border-default)]">
           {!isCollapsed && (
             <h2 className="text-lg font-semibold text-[var(--text-primary)]">
-              Spec Workflow MCP
+              ABeam Spec Workflow
             </h2>
           )}
           <button

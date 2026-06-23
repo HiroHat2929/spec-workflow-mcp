@@ -20,10 +20,6 @@
     "dark": "ダーク",
     "light": "ライト"
   },
-  "support": {
-    "me": "サポートする",
-    "project": "プロジェクトをサポート"
-  },
   "mobile": {
     "menu": "メニュー",
     "closeMenu": "メニューを閉じる",
@@ -53,7 +49,8 @@
   },
   "links": {
     "npm": "npm パッケージ",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upstreamReference": "原典:"
   },
   "editor": {
     "markdown": {
@@ -70,9 +67,16 @@
     }
   },
   "specViewer": {
-    "header": { "title": "仕様ドキュメント" },
-    "tooltips": { "viewRendered": "レンダリング表示", "viewSource": "ソース(Markdown)を表示" },
-    "empty": { "docNotCreated": "この {{doc}} ドキュメントはまだ作成されていません。" }
+    "header": {
+      "title": "仕様ドキュメント"
+    },
+    "tooltips": {
+      "viewRendered": "レンダリング表示",
+      "viewSource": "ソース(Markdown)を表示"
+    },
+    "empty": {
+      "docNotCreated": "この {{doc}} ドキュメントはまだ作成されていません。"
+    }
   },
   "language": {
     "select": "言語を選択"
@@ -126,9 +130,15 @@
       "task": "タスク",
       "groupBadge": "タスクグループ"
     },
-    "files": { "label": "ファイル:" },
-    "implementation": { "label": "実装:" },
-    "labels": { "spec": "仕様:" },
+    "files": {
+      "label": "ファイル:"
+    },
+    "implementation": {
+      "label": "実装:"
+    },
+    "labels": {
+      "spec": "仕様:"
+    },
     "taskDetails": "タスクの詳細",
     "status": "ステータス",
     "noTasksFound": "タスクが見つかりません",
@@ -561,5 +571,10 @@
       "loading": "変更履歴を読み込み中...",
       "notFound": "このバージョンの変更履歴が見つかりません"
     }
+  },
+  "mic": {
+    "start": "音声入力を開始",
+    "stop": "音声入力を停止",
+    "notSupported": "このブラウザは音声入力に対応していません"
   }
 }

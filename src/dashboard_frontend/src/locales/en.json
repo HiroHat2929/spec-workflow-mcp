@@ -20,10 +20,6 @@
     "dark": "Dark",
     "light": "Light"
   },
-  "support": {
-    "me": "Support Me",
-    "project": "Support the project"
-  },
   "mobile": {
     "menu": "Menu",
     "closeMenu": "Close menu",
@@ -53,7 +49,8 @@
   },
   "links": {
     "npm": "npm package",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upstreamReference": "Based on:"
   },
   "editor": {
     "markdown": {
@@ -70,9 +67,16 @@
     }
   },
   "specViewer": {
-    "header": { "title": "Spec Documents" },
-    "tooltips": { "viewRendered": "View rendered document", "viewSource": "View source markdown" },
-    "empty": { "docNotCreated": "This {{doc}} document hasn't been created yet." }
+    "header": {
+      "title": "Spec Documents"
+    },
+    "tooltips": {
+      "viewRendered": "View rendered document",
+      "viewSource": "View source markdown"
+    },
+    "empty": {
+      "docNotCreated": "This {{doc}} document hasn't been created yet."
+    }
   },
   "language": {
     "select": "Select language"
@@ -168,9 +172,15 @@
       "task": "Task",
       "groupBadge": "Task Group"
     },
-    "files": { "label": "Files:" },
-    "implementation": { "label": "Implementation:" },
-    "labels": { "spec": "Spec:" },
+    "files": {
+      "label": "Files:"
+    },
+    "implementation": {
+      "label": "Implementation:"
+    },
+    "labels": {
+      "spec": "Spec:"
+    },
     "noSpecsFound": {
       "title": "No specs found",
       "noMatch": "No specs match \"{{query}}\"",
@@ -561,5 +571,10 @@
       "loading": "Loading changelog...",
       "notFound": "Changelog not found for this version"
     }
+  },
+  "mic": {
+    "start": "Start voice input",
+    "stop": "Stop voice input",
+    "notSupported": "Voice input is not supported in this browser"
   }
 }

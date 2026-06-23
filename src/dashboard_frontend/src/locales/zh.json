@@ -20,10 +20,6 @@
     "dark": "深色",
     "light": "浅色"
   },
-  "support": {
-    "me": "支持我",
-    "project": "支持项目"
-  },
   "mobile": {
     "menu": "菜单",
     "closeMenu": "关闭菜单",
@@ -53,7 +49,8 @@
   },
   "links": {
     "npm": "npm 包",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upstreamReference": "基于:"
   },
   "editor": {
     "markdown": {
@@ -70,9 +67,16 @@
     }
   },
   "specViewer": {
-    "header": { "title": "规范文档" },
-    "tooltips": { "viewRendered": "查看渲染文档", "viewSource": "查看源 Markdown" },
-    "empty": { "docNotCreated": "该 {{doc}} 文档尚未创建。" }
+    "header": {
+      "title": "规范文档"
+    },
+    "tooltips": {
+      "viewRendered": "查看渲染文档",
+      "viewSource": "查看源 Markdown"
+    },
+    "empty": {
+      "docNotCreated": "该 {{doc}} 文档尚未创建。"
+    }
   },
   "language": {
     "select": "选择语言"
@@ -126,9 +130,15 @@
       "task": "任务",
       "groupBadge": "任务组"
     },
-    "files": { "label": "文件:" },
-    "implementation": { "label": "实现:" },
-    "labels": { "spec": "规范:" },
+    "files": {
+      "label": "文件:"
+    },
+    "implementation": {
+      "label": "实现:"
+    },
+    "labels": {
+      "spec": "规范:"
+    },
     "taskDetails": "任务详情",
     "status": "状态",
     "noTasksFound": "未找到任务",
@@ -561,5 +571,10 @@
       "loading": "正在加载更改日志...",
       "notFound": "找不到此版本的更改日志"
     }
+  },
+  "mic": {
+    "start": "开始语音输入",
+    "stop": "停止语音输入",
+    "notSupported": "此浏览器不支持语音输入"
   }
 }

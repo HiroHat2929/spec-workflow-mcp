@@ -58,10 +58,13 @@ flowchart TD
     CheckSteering -->|Yes| P1_Load[Read steering docs:<br/>.spec-workflow/steering/*.md]
     CheckSteering -->|No| P1_Template
 
-    %% Phase 1: Requirements
+    %% Phase 1: Requirements (IPA-aligned discovery, then drafting)
     P1_Load --> P1_Template[Check user-templates first,<br/>then read template:<br/>requirements-template.md]
-    P1_Template --> P1_Research[Web search if available]
-    P1_Research --> P1_Create[Create file:<br/>.spec-workflow/specs/{name}/<br/>requirements.md]
+    P1_Template --> P1_Concept[Step 1: Concept Discovery Q1-Q5<br/>ask ONE AT A TIME<br/>+ web search market trends after Q4<br/>+ KGI/KPI proposals at Q5<br/>+ similar cases search after Q5]
+    P1_Concept --> P1_Confirm{Step 2: Concept Summary<br/>user OK?}
+    P1_Confirm -->|revise| P1_Concept
+    P1_Confirm -->|OK| P1_Detail[Step 3: Detail Discovery Q6-Q8<br/>ask ONE AT A TIME]
+    P1_Detail --> P1_Create[Create file:<br/>.spec-workflow/specs/{name}/<br/>requirements.md]
     P1_Create --> P1_Approve[approvals<br/>action: request<br/>filePath only]
     P1_Approve --> P1_Status[approvals<br/>action: status<br/>poll status]
     P1_Status --> P1_Check{Status?}
@@ -113,12 +116,15 @@ flowchart TD
     style CheckSteering fill:#fff4e6
     style P4_More fill:#fff4e6
     style P4_Log fill:#e3f2fd
+    style P1_Concept fill:#e3f2fd
+    style P1_Confirm fill:#fff4e6
+    style P1_Detail fill:#e3f2fd
 \`\`\`
 
 ## Spec Workflow
 
 ### Phase 1: Requirements
-**Purpose**: Define what to build based on user needs.
+**Purpose**: Define what to build based on user needs. Follows the IPA "ユーザのための要件定義ガイド" (BR.1 / RM.1 / DD.1〜DD.3) framing — concept first, then details.
 
 **File Operations**:
 - Read steering docs: \`.spec-workflow/steering/*.md\` (if they exist)
@@ -128,18 +134,40 @@ flowchart TD
 
 **Tools**:
 - approvals: Manage approval workflow (actions: request, status, delete)
+- Web search (if available): used inside Discovery Step 1 to enrich market trends and surface similar cases
 
 **Process**:
 1. Check if \`.spec-workflow/steering/\` exists (if yes, read product.md, tech.md, structure.md)
-2. Check for custom template at \`.spec-workflow/user-templates/requirements-template.md\`
-3. If no custom template, read from \`.spec-workflow/templates/requirements-template.md\`
-4. Research market/user expectations (if web search available, current year: ${currentYear})
-5. Generate requirements as user stories with EARS criteria6. Create \`requirements.md\` at \`.spec-workflow/specs/{spec-name}/requirements.md\`
-7. Request approval using approvals tool with action:'request' (filePath only, never content)
-8. Poll status using approvals with action:'status' until approved/needs-revision (NEVER accept verbal approval)
-9. If needs-revision: update document using comments, create NEW approval, do NOT proceed
-10. Once approved: use approvals with action:'delete' (must succeed) before proceeding
-11. If delete fails: STOP - return to polling
+2. Check for custom template at \`.spec-workflow/user-templates/requirements-template.md\`. If no custom template, read from \`.spec-workflow/templates/requirements-template.md\` so you know what shape the final document needs.
+3. **MANDATORY DISCOVERY (do not skip — \`requirements.md\` MUST NOT be drafted before this completes).** Use the user's language (default 日本語) when asking questions. Ask **one question at a time** and wait for the user's answer before moving on.
+
+   **Step 1: コンセプト発掘 (Q1〜Q5, ask ONE AT A TIME)**
+   - Q1. ざっくり、どんなシステム/プロダクトを作りたいですか？ 2〜3 文くらいでイメージを教えてください。
+   - Q2. 主にどんな人が使う想定ですか？ どんな場面で使ってもらいたいですか？
+   - Q3. その人たちにどんな価値や体験を届けたいですか？
+   - Q4. なぜ今これを作ろうとしているんでしょう？ 市場・業務・規制まわりで何か動きがありますか？
+     - **AFTER Q4**: If web search is available (current year: ${currentYear}), search for current market / industry / regulatory trends related to the user's answer. Present a concise summary (3〜5 bullet points, source-linked when possible) and ask the user "他にも踏まえたいトレンドはありますか？". Merge any additions into the discovery record. If web search is unavailable, skip and tell the user so.
+   - Q5. リリース後どうなったら「うまくいった」と言えそうですか？ 数値で測れる KGI / KPI もあれば合わせて。
+     - **AT Q5**: Use Q1〜Q4 answers + the trend summary to **propose 3〜5 candidate KGI/KPI** to the user (e.g., "活性ユーザー数", "申請完了率", "平均処理時間" など). Ask which to adopt, modify, or replace. Record only what the user agrees to.
+   - **AFTER Q5, BEFORE Step 2**: If web search is available, search for similar products / services / public case studies in the same domain. Present 2〜3 examples (短く、用途と差別化観点を添えて). If unavailable, skip and tell the user.
+
+   **Step 2: コンセプト確認**
+   - Summarize Q1〜Q5 answers + market trends + similar cases as a markdown table.
+   - Ask the user: 「この理解で合ってますか？ 修正・追加があれば教えてください。」
+   - If the user requests changes, update the summary and re-confirm. **Loop until the user explicitly agrees** before moving on.
+
+   **Step 3: 詳細詰め (Q6〜Q8, ask ONE AT A TIME)**
+   - Q6. 利用者以外で、今回巻き込む必要がある関係者はいますか？ 社内の決裁者、運用、連携先、外部窓口など。
+   - Q7. 第一版に「入れたいこと」と「今回は入れないこと」を分けて教えてください。
+   - Q8. 最後に、守らないといけない制約はありますか？ 予算・期限・規制・技術縛り・性能/セキュリティ要件など。
+
+4. Generate requirements based on Q1〜Q8 answers + Step 2 confirmed concept + Steering docs (if any). Use user stories with EARS criteria. Map each requirement back to which Q it derives from when natural.
+5. Create \`requirements.md\` at \`.spec-workflow/specs/{spec-name}/requirements.md\`
+6. Request approval using approvals tool with action:'request' (filePath only, never content)
+7. Poll status using approvals with action:'status' until approved/needs-revision (NEVER accept verbal approval)
+8. If needs-revision: update document using comments, create NEW approval, do NOT proceed
+9. Once approved: use approvals with action:'delete' (must succeed) before proceeding
+10. If delete fails: STOP - return to polling
 
 ### Phase 2: Design
 **Purpose**: Create technical design addressing all requirements.
