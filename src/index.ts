@@ -3,21 +3,38 @@
 import { SpecWorkflowMCPServer } from './server.js';
 import { MultiProjectDashboardServer } from './dashboard/multi-server.js';
 import { DashboardSessionManager } from './core/dashboard-session.js';
+import { dispatchSubcommand } from './cli-commands.js';
 import { homedir } from 'os';
 import { resolveGitRoot, resolveGitWorkspaceRoot } from './core/git-utils.js';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { realpathSync } from 'fs';
+import { realpathSync, existsSync } from 'fs';
 
 // Default dashboard port
 const DEFAULT_DASHBOARD_PORT = 5000;
 
 function showHelp() {
   console.error(`
-Spec Workflow MCP Server - A Model Context Protocol server for spec-driven development
+Spec Workflow - spec-driven development for Claude Code (non-MCP CLI + standalone dashboard)
 
 USAGE:
-  spec-workflow-mcp [path] [options]
+  spec-workflow <subcommand> [options]
+  spec-workflow [path] [options]          (legacy MCP server mode)
+
+SUBCOMMANDS (non-MCP):
+  init [path] [--force]   Scaffold .claude/ skills+commands into a project
+                         (and seed .spec-workflow/ for a fresh project).
+                         --force overwrites existing files.
+  dashboard [--port N]    Run the web dashboard only (plain web server, NOT MCP).
+            [--no-open]
+  approval request --title <t> --file <relpath> --type document|action
+                   --category spec|steering --category-name <name> [--project <path>]
+  approval status  --id <approvalId> [--project <path>]
+  approval delete  --id <approvalId> [--project <path>]
+  log --input <file.json> [--project <path>]
+                         Append an implementation log entry (JSON payload:
+                         specName, taskId, summary, filesModified, filesCreated,
+                         statistics{linesAdded,linesRemoved}, artifacts{...}).
 
 ARGUMENTS:
   path                    Project path (defaults to current directory)
@@ -200,12 +217,25 @@ export function parseArguments(args: string[]): {
 
 async function main() {
   try {
-    const args = process.argv.slice(2);
+    let args = process.argv.slice(2);
 
     // Check for help flag
     if (args.includes('--help') || args.includes('-h')) {
       showHelp();
       process.exit(0);
+    }
+
+    // Non-MCP CLI subcommands (init / approval / log). These run without the
+    // MCP server so the workflow works under org policies that restrict MCP.
+    const subcommandExit = await dispatchSubcommand(args);
+    if (subcommandExit !== null) {
+      process.exit(subcommandExit);
+    }
+
+    // `dashboard` is a friendly alias for `--dashboard` (dashboard-only mode,
+    // which is a plain web server and NOT an MCP server).
+    if (args[0] === 'dashboard') {
+      args = ['--dashboard', ...args.slice(1)];
     }
 
     // Parse command-line arguments
@@ -337,7 +367,22 @@ async function main() {
       try {
         const dashboardUrl = await dashboardServer.start();
         console.error(`Dashboard started at: ${dashboardUrl}`);
-        console.error('Projects will automatically appear as MCP servers register.');
+
+        // Auto-register the current project so it appears immediately. This
+        // replaces the old MCP-server auto-registration (MCP is no longer used).
+        // Only register when a .spec-workflow directory exists at the resolved root.
+        try {
+          const specWorkflowDir = resolve(workflowRootPath, '.spec-workflow');
+          if (existsSync(specWorkflowDir)) {
+            await dashboardServer.addProjectByPath(workflowRootPath);
+            console.error(`Registered project: ${workflowRootPath}`);
+          } else {
+            console.error('No .spec-workflow found at this path; add projects via the dashboard UI.');
+          }
+        } catch (regError: any) {
+          console.error(`Could not auto-register project: ${regError?.message ?? regError}`);
+        }
+
         console.error('Press Ctrl+C to stop the dashboard');
       } catch (error: any) {
         console.error(`Failed to start dashboard: ${error.message}`);

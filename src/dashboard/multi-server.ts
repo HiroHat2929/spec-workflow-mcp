@@ -88,6 +88,15 @@ export class MultiProjectDashboardServer {
     this.app = fastify({ logger: false });
   }
 
+  /**
+   * Register a project by path so it appears in the dashboard immediately.
+   * Used by the `dashboard` subcommand to auto-register the current project,
+   * replacing the old MCP-server auto-registration (MCP is no longer used).
+   */
+  async addProjectByPath(projectPath: string): Promise<string> {
+    return this.projectManager.addProjectByPath(projectPath);
+  }
+
   async start() {
     // Security warning if binding to non-localhost address
     if (!isLocalhostAddress(this.bindAddress)) {
