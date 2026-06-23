@@ -12,7 +12,7 @@
 
 ```bash
 # ① ツール本体を1回だけ用意（マシンごとに1回）
-git clone <配布リポジトリのURL> spec-workflow
+git clone https://github.com/HiroHat2929/spec-workflow-mcp.git spec-workflow
 cd spec-workflow
 npm ci
 npm run build
@@ -49,9 +49,13 @@ spec-workflow init
 ## 3. 配布する人向け（チームに配る側）
 
 ### 3-1. 配り方（推奨：git 経由）
-1. このリポジトリを社内 / プライベートの git（GitHub など）に置く。
-2. 利用者に **リポジトリの URL を共有**するだけ。
-3. 利用者は「2. 前提」を満たしたうえで、上の **クイックスタート①** を実行する。
+配布リポジトリ: **https://github.com/HiroHat2929/spec-workflow-mcp**（最新は `main` ブランチに反映済み）。
+
+1. 利用者に **このリポジトリの URL を共有**するだけ。
+2. 利用者は「2. 前提」を満たしたうえで、上の **クイックスタート①** を実行する。
+
+> 別の社内 git ホスト（Azure DevOps / GitHub Enterprise 等）へミラーしたい場合は、
+> `git remote add internal <URL>` → `git push internal main` で複製できます。
 
 > npm レジストリ（npmjs.org / 社内レジストリ）が使える環境なら、そこに publish して
 > `npm install -g @<org>/spec-workflow` でも配れます。レジストリが使えない環境では **git 経由が確実**です。
@@ -73,7 +77,7 @@ spec-workflow init
 
 ### ステップ1：ツール本体を用意（マシンごとに1回だけ）
 ```bash
-git clone <配布リポジトリのURL> spec-workflow
+git clone https://github.com/HiroHat2929/spec-workflow-mcp.git spec-workflow
 cd spec-workflow
 npm ci          # 依存をインストール
 npm run build   # CLI とダッシュボードをビルド
